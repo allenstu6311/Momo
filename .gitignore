@@ -13,6 +13,9 @@ dist-ssr
 *.local
 *.tsbuildinfo
 
+# Local agent tooling (skills/settings) — not part of the deliverable
+.claude/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
