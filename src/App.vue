@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Showroom from './components/Showroom.vue'
 </script>
 
 <template>
-  <HelloWorld />
+  <Showroom />
 </template>
