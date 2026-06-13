@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>momo Card — Web Component 範例</title>
+    <!--
+      用 <script> 載入打包好的 Web Component（pnpm build:wc 產生），
+      之後即可在任何純 HTML 用 <momo-product-card data='...'>。
+      可直接用瀏覽器雙擊開啟（file://），無需 server。
+    -->
+    <script src="./momo-cards.js"></script>
+    <style>
+      body {
+        font-family: system-ui, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        margin: 32px;
+        background: #f6f6f6;
+      }
+      h1 { font-size: 20px; }
+      h2 { font-size: 14px; color: #666; margin-top: 32px; }
+      .row { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+      code { background: #eee; padding: 1px 4px; border-radius: 3px; }
+    </style>
+  </head>
+  <body>
+    <h1>momo Card — Web Component 範例</h1>
+    <p>同一個 <code>&lt;momo-product-card&gt;</code> 元件，用 <code>data</code> 屬性（JSON 字串）餵資料。</p>
+
+    <h2>排行榜卡（ranking）</h2>
+    <div class="row">
+      <momo-product-card
+        data='{"variant":"ranking","rank":"TOP1","brand":"PLAYBOY","title":"【PLAYBOY】momo獨家★手提包(多款任選)","promoText":"滿1000折150","images":["https://i3.momoshop.com.tw/1781147061/goodsimg/0013/098/575/13098575_OL_m.webp"],"price":968,"rating":4.7,"reviewCount":17,"salesText":"總銷量>100","tags":["折價券","登記"]}'
+      ></momo-product-card>
+
+      <momo-product-card
+        data='{"variant":"ranking","rank":"TOP2","brand":"PLAYBOY","title":"【PLAYBOY】手提包精選款(多款任選)","promoText":"滿1000折150","images":["https://i3.momoshop.com.tw/1781162314/goodsimg/0011/544/783/11544783_OL_m.webp"],"price":1268,"rating":4.8,"reviewCount":420,"salesText":"總銷量>3,000","tags":["折價券","登記"]}'
+      ></momo-product-card>
+    </div>
+
+    <h2>標準卡（standard，含原價刪除線、多圖輪播、操作層）</h2>
+    <div class="row">
+      <momo-product-card
+        data='{"variant":"standard","brand":"PLAYBOY","title":"【PLAYBOY】後背包 Chill系列(黑色)","promoText":"滿1000折150","images":["https://i2.momoshop.com.tw/1720760460/goodsimg/0013/035/080/13035080_OR_m.webp","https://i2.momoshop.com.tw/1720760460/goodsimg/0013/035/080/13035080_OL_m.webp"],"price":3130,"originalPrice":3580,"rating":4.8,"reviewCount":63,"salesText":"總銷量>100","tags":["折價券","登記"],"actions":["cart","wishlist"]}'
+      ></momo-product-card>
+
+      <momo-product-card
+        data='{"variant":"standard","brand":"PLAYBOY","title":"【PLAYBOY】人氣精選斜背包/側背包(多款任選)","promoText":"滿1000折150","images":["https://i3.momoshop.com.tw/1780648040/goodsimg/0011/361/880/11361880_OR_m.webp"],"price":1468,"originalPrice":3280,"rating":4.7,"reviewCount":211,"salesText":"總銷量>1,000","tags":["折價券","登記"],"actions":["cart","wishlist"]}'
+      ></momo-product-card>
+    </div>
+
+    <h2>壞資料示範（WC 跑同一個 validate，擋下並顯示錯誤 + console.error）</h2>
+    <p>下面這張：ranking 缺 <code>rank</code>、不該有 <code>originalPrice</code>、<code>price</code> 是文字。</p>
+    <div class="row">
+      <momo-product-card
+        data='{"variant":"ranking","title":"壞資料","images":["https://i3.momoshop.com.tw/1781147061/goodsimg/0013/098/575/13098575_OL_m.webp"],"price":"not-a-number","originalPrice":999}'
+      ></momo-product-card>
+    </div>
+  </body>
+</html>
