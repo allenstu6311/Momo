@@ -13,6 +13,8 @@ export default defineConfig({
     // 關閉 Vue 開發期警告，讓 IIFE 走 production 路徑。
     'process.env.NODE_ENV': '"production"',
   },
+  // WC build 不複製 public/（否則 favicon/icons 會被丟進 samples/）。
+  publicDir: false,
   build: {
     outDir: 'samples',
     emptyOutDir: false, // 別清掉 sample.html / scraped json
